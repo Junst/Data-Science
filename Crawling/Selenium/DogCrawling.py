@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By ## 추가
+import re
 driver = webdriver.Chrome('chromedriver.exe')
 
 baseurl = 'https://www.kkc.or.kr/megazine/megazine_02.html?page='
@@ -37,8 +38,17 @@ for i in range(14):
 #print(namelist) # 위 for 문 안에 넣으면 for문이 끝날때마다 출력되나, 여기에다가 print를 쓰면 결과만 만옴
 #print(linelist)
 #print(linelist2)
-for i in range(len(namelist)): # list 만큼 dict에
-    namedict[i] = namelist[i] # 넣어줌
+
+## 리스트에서 특정 문자열 제거
+namelist2 =[]
+
+for i in namelist :
+    text = re.sub('[A-Z(/s]','',i).strip()
+    namelist2.append(text)
+print(namelist2)
+
+for i in range(len(namelist2)): # list 만큼 dict에
+    namedict[i] = namelist2[i] # 넣어줌
 print(namedict) # 그 dict가 제대로 됐는지 확인
 
 import json
